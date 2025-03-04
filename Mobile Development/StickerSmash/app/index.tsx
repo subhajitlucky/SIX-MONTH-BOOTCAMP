@@ -1,11 +1,23 @@
-import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import React, { useState } from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
 export default function App() {
+  // Initialize state with a default message
+  const [message, setMessage] = useState("Welcome to HelloWorld App!");
+
+  // Function to toggle the message
+  const toggleMessage = () => {
+    setMessage(prevMessage =>
+      prevMessage === "Welcome to HelloWorld App!" 
+        ? "Button Pressed: Hello, React Native!" 
+        : "Welcome to HelloWorld App!"
+    );
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Hello, React Native!</Text>
-      <Text>Welcome to my first mobile app!</Text>
+      <Text style={styles.message}>{message}</Text>
+      <Button title="Press Me" onPress={toggleMessage} />
     </View>
   );
 }
@@ -17,9 +29,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#f4f4f4",
   },
-  header: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 10,
+  message: {
+    fontSize: 20,
+    marginBottom: 20,
   },
 });
