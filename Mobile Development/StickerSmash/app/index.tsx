@@ -1,23 +1,22 @@
-import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
-  // Initialize state with a default message
-  const [message, setMessage] = useState("Welcome to HelloWorld App!");
-
-  // Function to toggle the message
-  const toggleMessage = () => {
-    setMessage(prevMessage =>
-      prevMessage === "Welcome to HelloWorld App!" 
-        ? "Button Pressed: Hello, React Native!" 
-        : "Welcome to HelloWorld App!"
-    );
-  };
+  const [message] = useState('Hello, Day 4!');
+  const [count, setCount] = useState(0);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.message}>{message}</Text>
-      <Button title="Press Me" onPress={toggleMessage} />
+      <Text style={styles.title}>{message}</Text>
+      <Text style={styles.subtitle}>Count: {count}</Text>
+      <Button
+        title="Increment"
+        onPress={() => setCount(count + 1)}
+      />
+      <Button
+        title="Decrement"
+        onPress={() => setCount(count - 1)}
+      />
     </View>
   );
 }
@@ -25,12 +24,15 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#f4f4f4",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  message: {
-    fontSize: 20,
-    marginBottom: 20,
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
   },
+  subtitle: {
+    fontSize: 18,
+    color: 'gray',
+  }
 });
